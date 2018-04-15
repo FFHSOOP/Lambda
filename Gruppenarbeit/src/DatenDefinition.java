@@ -3,7 +3,7 @@ import java.util.List;
 
 public final class DatenDefinition {
 	
-	// Hilfsklasse um ein Datenset fuer Tests zur Verfuegung zu stellen.
+	// Hilfsklasse um ein Datenset fuer Tests zur Verfuegung zu stellen..
 	
 	public static final List<SpielfeldZeile> spielfeldzeilen = new ArrayList<>();
 	
