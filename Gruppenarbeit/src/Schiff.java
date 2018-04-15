@@ -7,10 +7,10 @@
 public class Schiff {
 	protected int length = 0;
     protected String text1 = null;
-    protected String text2 = null;
+    protected String text2 = "Die Felder müssen zusammehängend und in einer vertikalen oder horizontalen Reihe sein.";
     public int[] posi;
-    private int[] belegt = new int [5];
-    private int[] checkb = new int [5];
+    private int[] belegt = new int [5]; // Position 
+    private int[] checkb = new int [5]; // bereits getroffene Position
     protected int tcount = 0;
     boolean treffer = false;
     boolean versenkt = false;
