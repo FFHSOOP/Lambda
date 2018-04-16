@@ -37,11 +37,10 @@ public class MainWindow extends JFrame{
 		table.setRowHeight(20);
 		table.setDefaultRenderer(Object.class, dtcr);
 
-
 		
 		table.setCellSelectionEnabled(true);
 		ListSelectionModel cellSelectionModel = table.getSelectionModel();
-		cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cellSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 			
 		
 		table.addMouseListener(new MouseAdapter() {
