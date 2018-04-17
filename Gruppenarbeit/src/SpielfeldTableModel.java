@@ -16,30 +16,19 @@ public class SpielfeldTableModel extends AbstractTableModel{
 	
 	private static final String[] COLUMN_NAMES = {"A", "B", "C", "D","E","F", "G","H","I","J"};
 	private static final Class<?>[] COLUMN_CLASSES = { 
-			 String.class
-			, String.class
-			,String.class
-			,String.class
-			,String.class
-			,String.class
-			,String.class
-			,String.class
-			,String.class
-			,String.class};
+			 int.class
+			, int.class
+			, int.class
+			, int.class
+			, int.class
+			, int.class
+			, int.class
+			, int.class
+			, int.class
+			, int.class};
 	
 	public SpielfeldTableModel(final List<SpielfeldZeile> spielfeldzeilen) {
 		this.spielfeldzeilen = new ArrayList<>(spielfeldzeilen);
-		this.spalten = new HashMap<>();
-		this.spalten.put(0, "A");
-		this.spalten.put(1, "B");
-		this.spalten.put(2, "C");
-		this.spalten.put(3, "D");
-		this.spalten.put(4, "E");
-		this.spalten.put(5, "F");
-		this.spalten.put(6, "G");
-		this.spalten.put(7, "H");
-		this.spalten.put(8, "I");
-		this.spalten.put(9, "J");
 	}
 	
 	@Override
@@ -61,7 +50,7 @@ public class SpielfeldTableModel extends AbstractTableModel{
 		SpielfeldZeile spielfeldzeile = spielfeldzeilen.get(rowIndex);
 		try {
 //			System.out.println(spalten.get(columnIndex));
-			r = spielfeldzeile.getValue(spalten.get(columnIndex));
+			r = spielfeldzeile.getValue(columnIndex);
 			//System.out.println( spielfeldzeile.getRowContent(spalten.get(columnIndex)));
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
@@ -76,7 +65,7 @@ public class SpielfeldTableModel extends AbstractTableModel{
 	
 	public void setValue(String value, int rowIndex, int columnIndex){
 		SpielfeldZeile spielfeldzeile = spielfeldzeilen.get(rowIndex);
-		spielfeldzeile.setValue(spalten.get(columnIndex), value);
+		spielfeldzeile.setValue(columnIndex, value);
 		fireTableDataChanged();
 	}
 	

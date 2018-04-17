@@ -1,142 +1,52 @@
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SpielfeldZeile {
-	private String A;
-	private String B;
-	private String C;
-	private String D;
-	private String E;
-	private String F;
-	private String G;
-	private String H;
-	private String I;
-	private String J;
-
-	public SpielfeldZeile(){}
+	Map<Integer, String> spalten = new HashMap<>();
 	
+
+	public SpielfeldZeile(){
+		for (int i = 0; i< 10; i++){
+			spalten.put(i,  "");
+		}
+
+	}
+		
 	public SpielfeldZeile(
-			String A
-			,String B
-			,String C
-			,String D
-			,String E
-			,String F
-			,String G
-			,String H
-			,String I
-			,String J
+			String spalte0
+			,String spalte1
+			,String spalte2
+			,String spalte3
+			,String spalte4
+			,String spalte5
+			,String spalte6
+			,String spalte7
+			,String spalte8
+			,String spalte9
 			
 			){
-		this.A = A;
-		this.B = B;
-		this.C = C;
-		this.D = D;
-		this.E = E;
-		this.F = F;
-		this.G = G;
-		this.H = H;
-		this.I = I;
-		this.J = J;
-
+		spalten.put(0, spalte0);
+		spalten.put(1, spalte1);
+		spalten.put(2, spalte2);
+		spalten.put(3, spalte3);
+		spalten.put(4, spalte4);
+		spalten.put(5, spalte5);
+		spalten.put(6, spalte6);
+		spalten.put(7, spalte7);
+		spalten.put(8, spalte8);
+		spalten.put(9, spalte9);
 		
 	}
 	
-	public String getValue(String x){
-		String r = "";
-		switch(x.toLowerCase()){
-		case "a":
-			r = this.A;
-			break;
-		case "b":
-			r = this.B;
-			break;
-		case "c":
-			r = this.C;
-			break;
-		case "d":
-			r = this.D;
-			break;
-		case "e":
-			r = this.E;
-			break;
-		case "f":
-			r = this.F;
-			break;
-		case "g":
-			r = this.G;
-			break;
-		case "h":
-			r = this.H;
-			break;
-		case "i":
-			r = this.I;
-			break;
-		case "j":
-			r = this.J;
-			break;
-		}
-		return r;
+	public String getValue(int x){
+		return spalten.get(x);
 	}
 	
-	public void setValue(String column, String value){
-		
-		switch(column.toLowerCase()){
-		case "a":
-			this.A = value;
-			break;
-		case "b":
-			this.B = value;
-			break;
-		case "c":
-			this.C = value;
-			break;
-		case "d":
-			this.D = value;
-			break;
-		case "e":
-			this.E = value;
-			break;
-		case "f":
-			this.F = value;
-			break;
-		case "g":
-			this.G = value;
-			break;
-		case "h":
-			this.H = value;
-			break;
-		case "i":
-			this.I = value;
-			break;
-		case "j":
-			this.J = value;
-			break;
+	public void setValue(int spalte, String value){
+			spalten.put(spalte, value);
 		}
 
-	}
-		
-
-	/*
-	public String getRowContent(String x) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException{
-		
-		SpielfeldZeile s = new SpielfeldZeile();
-
-			Field f = s.getClass().getField(x.toUpperCase());
-			return (String) f.get(s);
 	
-		
-		}
-	
-	
-	
-	public void setRowContent(String row, String wert) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException{
-		
-		SpielfeldZeile s = new SpielfeldZeile();
-		
-		Field f = s.getClass().getField(row.toUpperCase());
-		f.set(s, wert);
-		
-			}
-	*/
 
 }
