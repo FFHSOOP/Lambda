@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Position {
+public class Position implements Serializable{
 	private int spalte;
 	private int zeile;
 	private boolean getroffen;

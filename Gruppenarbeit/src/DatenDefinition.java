@@ -20,5 +20,20 @@ public final class DatenDefinition {
 	spielfeldzeilen.add(new SpielfeldZeile("o","o","o","o","o","o","o","o","o","o"));
 	}
 	
+public static final List<SpielfeldZeile> gegnerspielfeldzeilen = new ArrayList<>();
+	
+	static{
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+		gegnerspielfeldzeilen.add(new SpielfeldZeile("","","","","","","","","",""));
+	}
+	
 
 }
