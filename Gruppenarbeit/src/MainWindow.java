@@ -32,7 +32,7 @@ public class MainWindow extends JFrame{
 		//Enthält Label und Spielfelder
 		final JPanel panelSpielfelder = new JPanel();
 		panelSpielfelder.setLayout(new BoxLayout(panelSpielfelder, BoxLayout.X_AXIS));
-		panelSpielfelder.setBorder(new EmptyBorder(10, 10, 10, 10));
+		//panelSpielfelder.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		final JPanel buttonPanel = new JPanel(new GridLayout(12,0));
 		
@@ -40,10 +40,12 @@ public class MainWindow extends JFrame{
 		final JPanel panelSpielfeld = new JPanel();
 		panelSpielfeld.setLayout(new BoxLayout(panelSpielfeld, BoxLayout.Y_AXIS));
 		panelSpielfeld.setBorder(new EmptyBorder(10, 10, 10, 10));
+
 		
 		final JPanel panelSpielfeldG = new JPanel();
 		panelSpielfeldG.setLayout(new BoxLayout(panelSpielfeldG, BoxLayout.Y_AXIS));
 		panelSpielfeldG.setBorder(new EmptyBorder(10, 10, 10, 10));
+
 		
 		final JLabel labelSpielfeld = new JLabel("Eigenes Spielfeld", SwingConstants.LEFT);
 		labelSpielfeld.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -147,7 +149,7 @@ public class MainWindow extends JFrame{
 		frame.add(panelSpielfelder,BorderLayout.CENTER);
 		frame.add(buttonPanel, BorderLayout.WEST);
 		frame.add(labelMessageBoard, BorderLayout.SOUTH);
-		frame.setSize(1000, 469);
+		frame.setSize(1000, 451);
 		frame.setVisible(true);
 		
 		button.addActionListener(new ActionListener() {
