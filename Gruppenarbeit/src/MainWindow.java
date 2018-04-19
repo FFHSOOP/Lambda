@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,9 +15,10 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 
 public class MainWindow extends JFrame{
 	
@@ -27,20 +29,33 @@ public class MainWindow extends JFrame{
 		final JFrame frame = new JFrame(titel);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		//Enthält Label und Spiefelder
+		//Enthält Label und Spielfelder
 		final JPanel panelSpielfelder = new JPanel();
-		panelSpielfelder.setLayout(new BoxLayout(panelSpielfelder, BoxLayout.Y_AXIS));
+		panelSpielfelder.setLayout(new BoxLayout(panelSpielfelder, BoxLayout.X_AXIS));
 		panelSpielfelder.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
-		final JPanel buttonPanel = new JPanel(new GridLayout(20,0));
+		final JPanel buttonPanel = new JPanel(new GridLayout(12,0));
 		
 		
 		final JPanel panelSpielfeld = new JPanel();
+		panelSpielfeld.setLayout(new BoxLayout(panelSpielfeld, BoxLayout.Y_AXIS));
 		panelSpielfeld.setBorder(new EmptyBorder(10, 10, 10, 10));
-		final JLabel labelSpielfeld = new JLabel("Eigenes Spielfeld");
+		
+		final JPanel panelSpielfeldG = new JPanel();
+		panelSpielfeldG.setLayout(new BoxLayout(panelSpielfeldG, BoxLayout.Y_AXIS));
+		panelSpielfeldG.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		final JLabel labelSpielfeld = new JLabel("Eigenes Spielfeld", SwingConstants.LEFT);
 		labelSpielfeld.setBorder(new EmptyBorder(10, 10, 10, 10));
 		final JLabel labelSpielfeldG = new JLabel("Gegnerisches Spielfel");
 		labelSpielfeldG.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		final JTextArea labelMessageBoard = new JTextArea("Hier steht eine Anweisung oder Information für den Spieler, Hier steht eine Anweisung oder Information für den Spieler");
+		labelMessageBoard.setWrapStyleWord(true);
+		labelMessageBoard.setLineWrap(true);
+		labelMessageBoard.setEditable(false);
+		labelMessageBoard.setPreferredSize(new Dimension(80, 80));
+		labelMessageBoard.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		final List<SpielfeldZeile> spielfeldZeilen = DatenDefinition.spielfeldzeilen;
 		final SpielfeldTableModel tableModel = new SpielfeldTableModel(spielfeldZeilen);
@@ -48,16 +63,13 @@ public class MainWindow extends JFrame{
 		final List<SpielfeldZeile> spielfeldZeilenG = DatenDefinition.gegnerspielfeldzeilen;
 		final SpielfeldTableModel tableModelG = new SpielfeldTableModel(spielfeldZeilenG);
 		
-		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-		dtcr.setHorizontalAlignment(JLabel.CENTER);
-		
 		final JTable table = new JTable(tableModel);
 		table.setRowHeight(25);
-		table.setDefaultRenderer(Object.class, dtcr);
+		table.setDefaultRenderer(Object.class,  new CustomCellRenderer());
 		
 		final JTable tableG = new JTable(tableModelG);
 		tableG.setRowHeight(25);
-		tableG.setDefaultRenderer(Object.class, dtcr);
+		tableG.setDefaultRenderer(Object.class,  new CustomCellRenderer());
 
 		
 		table.setCellSelectionEnabled(true);
@@ -88,6 +100,7 @@ public class MainWindow extends JFrame{
 					int z = tableG.getSelectedRow();
 					System.out.println("Geklickte Spalte: " + s);
 					System.out.println("Geklickte Zeile: " + z);
+					tableModelG.setValue("x", tableG.getSelectedRow(), tableG.getSelectedColumn());
 					System.out.println("Wert in der Zelle: " + tableG.getValueAt(z, s));
 				}
 			}
@@ -119,17 +132,22 @@ public class MainWindow extends JFrame{
 		JScrollPane scrollG = new JScrollPane(tableG);
 		scrollG.setRowHeaderView(rowHeaderG);
 		
-		panelSpielfelder.add(labelSpielfeld);
-		panelSpielfelder.add(scroll);
-		panelSpielfelder.add(labelSpielfeldG);
-		panelSpielfelder.add(scrollG);
+		panelSpielfeld.add(labelSpielfeld);
+		panelSpielfeld.add(scroll);
+		panelSpielfeldG.add(labelSpielfeldG);
+		panelSpielfeldG.add(scrollG);
+		//panelSpielfelder.add(labelMessageBoard);
+		
+		panelSpielfelder.add(panelSpielfeld);
+		panelSpielfelder.add(panelSpielfeldG);
 		
 		buttonPanel.add(button);
 		buttonPanel.add(new JButton("Test"));
 		
-		frame.add(panelSpielfelder);
+		frame.add(panelSpielfelder,BorderLayout.CENTER);
 		frame.add(buttonPanel, BorderLayout.WEST);
-		frame.setSize(700, 680);
+		frame.add(labelMessageBoard, BorderLayout.SOUTH);
+		frame.setSize(1000, 469);
 		frame.setVisible(true);
 		
 		button.addActionListener(new ActionListener() {
@@ -148,15 +166,7 @@ public class MainWindow extends JFrame{
 		});
 		
 		
-			
-			
-
-		
 	}
-	
-	
-	
-	
 	
 
 }
