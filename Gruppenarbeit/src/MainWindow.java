@@ -35,6 +35,8 @@ public class MainWindow extends JFrame{
 		//panelSpielfelder.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		final JPanel buttonPanel = new JPanel(new GridLayout(12,0));
+		final JPanel buttonPanelSpiel = new JPanel(new GridLayout(1,0));
+		final JPanel buttonPanelSpielG = new JPanel(new GridLayout(1,0));
 		
 		
 		final JPanel panelSpielfeld = new JPanel();
@@ -128,30 +130,6 @@ public class MainWindow extends JFrame{
 		
 		final JButton button = new JButton("Wert y bei Zeile 3, Spalte C setzen");
 		
-		JScrollPane scroll = new JScrollPane(table);
-		scroll.setRowHeaderView(rowHeader);
-		
-		JScrollPane scrollG = new JScrollPane(tableG);
-		scrollG.setRowHeaderView(rowHeaderG);
-		
-		panelSpielfeld.add(labelSpielfeld);
-		panelSpielfeld.add(scroll);
-		panelSpielfeldG.add(labelSpielfeldG);
-		panelSpielfeldG.add(scrollG);
-		//panelSpielfelder.add(labelMessageBoard);
-		
-		panelSpielfelder.add(panelSpielfeld);
-		panelSpielfelder.add(panelSpielfeldG);
-		
-		buttonPanel.add(button);
-		buttonPanel.add(new JButton("Test"));
-		
-		frame.add(panelSpielfelder,BorderLayout.CENTER);
-		frame.add(buttonPanel, BorderLayout.WEST);
-		frame.add(labelMessageBoard, BorderLayout.SOUTH);
-		frame.setSize(1000, 451);
-		frame.setVisible(true);
-		
 		button.addActionListener(new ActionListener() {
 			
 			@Override
@@ -167,6 +145,62 @@ public class MainWindow extends JFrame{
 			}
 		});
 		
+		
+		
+		final JButton buttonSF = new JButton("Schiff setzen");
+		final JButton buttonSB = new JButton("Spiel Beenden");
+		final JButton buttonSchuss = new JButton("Schuss abgeben");
+		final JButton buttonSpiel = new JButton("Spieldaten erfassen");
+		
+		
+		
+	
+		buttonSB.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+
+					System.exit(0);
+				} catch (IllegalArgumentException | SecurityException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		buttonPanelSpiel.add(buttonSF);
+		buttonPanelSpielG.add(buttonSchuss);
+		
+		
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setRowHeaderView(rowHeader);
+		
+		JScrollPane scrollG = new JScrollPane(tableG);
+		scrollG.setRowHeaderView(rowHeaderG);
+		
+		panelSpielfeld.add(labelSpielfeld);
+		panelSpielfeld.add(scroll);
+		panelSpielfeld.add(buttonPanelSpiel);
+		panelSpielfeldG.add(labelSpielfeldG);
+		panelSpielfeldG.add(scrollG);
+		panelSpielfeldG.add(buttonPanelSpielG);
+		//panelSpielfelder.add(labelMessageBoard);
+		
+		panelSpielfelder.add(panelSpielfeld);
+		panelSpielfelder.add(panelSpielfeldG);
+		
+		buttonPanel.add(button);
+		buttonPanel.add(buttonSpiel);
+			buttonPanel.add(buttonSB);
+		
+		frame.add(panelSpielfelder,BorderLayout.CENTER);
+		frame.add(buttonPanel, BorderLayout.WEST);
+		frame.add(labelMessageBoard, BorderLayout.SOUTH);
+		frame.setSize(1000, 477);
+		frame.setVisible(true);
+		
+
 		
 	}
 	
