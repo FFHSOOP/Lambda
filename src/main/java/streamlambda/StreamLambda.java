@@ -12,13 +12,15 @@ import java.util.stream.Collectors;
 public class StreamLambda {
 
     public List<Album> copyFavsAndSort(List<Album> albums) {
-        //List<Album> favs = new ArrayList<>();
+        //Filter Predicate
         final Predicate<Album> hasFavorite = album -> album.tracks.rating >= 4;
+        //Sort Comparator
         Comparator<Album> comp = new Comparator<Album>() {
             public int compare(Album a1, Album a2) {
                 return a1.name.compareTo(a2.name);
             }
         };
+        //Filtern, Sortieren, als Liste speichern
         List<Album> favs = albums.stream().filter(hasFavorite).sorted(comp).collect(Collectors.toList());
         return favs;
     }
