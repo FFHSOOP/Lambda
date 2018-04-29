@@ -10,9 +10,7 @@ import java.util.List;
  */
 public class StreamLambda {
 
-    private static Iterable<Album> albums;
-
-    public static void main(String[] args) {
+    public void copyFavsAndSort(List<Album> albums){
         List<Album> favs = new ArrayList<>();
         
         for (Album a : albums) {
