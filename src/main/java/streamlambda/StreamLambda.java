@@ -1,8 +1,9 @@
 package streamlambda;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -10,22 +11,15 @@ import java.util.List;
  */
 public class StreamLambda {
 
-    public void copyFavsAndSort(List<Album> albums){
-        List<Album> favs = new ArrayList<>();
-        
-        for (Album a : albums) {
-            boolean hasFavorite = false;
-            for (Track t : a.tracks) {
-                if (t.rating >= 4) {
-                    hasFavorite = true;
-                    break;
-                }
+    public List<Album> copyFavsAndSort(List<Album> albums) {
+        //List<Album> favs = new ArrayList<>();
+        final Predicate<Album> hasFavorite = album -> album.tracks.rating >= 4;
+        Comparator<Album> comp = new Comparator<Album>() {
+            public int compare(Album a1, Album a2) {
+                return a1.name.compareTo(a2.name);
             }
-            if (hasFavorite) {
-                favs.add(a);
-            }
-        }
-        
-        Collections.sort(favs, (Album a1, Album a2) -> a1.name.compareTo(a2.name));
+        };
+        List<Album> favs = albums.stream().filter(hasFavorite).sorted(comp).collect(Collectors.toList());
+        return favs;
     }
 }
